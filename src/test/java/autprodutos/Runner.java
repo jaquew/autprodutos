@@ -9,7 +9,7 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(
 		plugin ={"pretty" , "html:target/log.html"},
 		features = "src/test/resources/features/", 
-		glue = "com.aos.steps",
+		glue = "com.autprodutos.steps",
 		monochrome = true
 		)
 public class Runner {
