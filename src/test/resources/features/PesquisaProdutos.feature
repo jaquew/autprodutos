@@ -1,15 +1,14 @@
 #Author: eng.jaquesilva@gmail.com
 
-Feature: Pesquisar Produto
-@Pesquisar1
-	Scenario: Realizar a pesquisa de um produto
-	Given
-	When
-	Then
-	
-@Pesquisar2
-	Scenario: Excluir produto
-	Given
-	When
-	Then
-	
+Feature: Pesquisa Produtos
+#@Pesquisar1
+#	Scenario: Realizar a pesquisa de um produto
+#	Given Que eu esteja na tela principal
+#	When 	
+#	Then
+#	
+#@Pesquisar2
+#	Scenario: Excluir produto
+#	Given
+#	When
+#	Then			
