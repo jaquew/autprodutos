@@ -13,3 +13,4 @@ APK Disponível em: https://drive.google.com/open?id=12URcclJ5RmyLE_k5KSsbdbD96r
  - JUnit
  - Cucumber
  - Appium
+ - Gherkin
