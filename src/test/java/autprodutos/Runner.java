@@ -10,7 +10,7 @@ import io.cucumber.junit.CucumberOptions;
 		plugin ={"pretty" , "html:target/log.html"},
 		features = "src/test/resources/features/", 
 		glue = "com.autprodutos.steps",
-		tags = "@Cadastrar1",
+		tags = "@Pesquisar",
 		monochrome = true
 		)
 public class Runner {

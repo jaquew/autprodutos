@@ -3,24 +3,22 @@ package com.autprodutos.pages;
 import static org.junit.Assert.assertTrue;
 
 import java.time.Duration;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.Assert;
 import org.openqa.selenium.support.PageFactory;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.touch.offset.PointOption;
 
 public class CadastroPage {
-	AppiumDriver<MobileElement> driver;
+	AndroidDriver<MobileElement> driver;
 	int y;
 
-	public CadastroPage(AppiumDriver<MobileElement> driver) {
+	public CadastroPage(AndroidDriver<MobileElement> driver) {
 		this.driver = driver;
 		PageFactory.initElements(new AppiumFieldDecorator(driver, Duration.ofSeconds(15)), this);
 		y = (driver.manage().window().getSize().getHeight() - 400);

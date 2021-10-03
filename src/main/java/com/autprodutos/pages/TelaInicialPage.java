@@ -7,16 +7,16 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.support.PageFactory;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
 public class TelaInicialPage {
-	AppiumDriver<MobileElement> driver;
+	AndroidDriver<MobileElement> driver;
 	int y;
 
-	public TelaInicialPage(AppiumDriver<MobileElement> driver) {
+	public TelaInicialPage(AndroidDriver<MobileElement> driver) {
 		this.driver = driver;
 		PageFactory.initElements(new AppiumFieldDecorator(driver, Duration.ofSeconds(8)), this);
 
@@ -36,6 +36,15 @@ public class TelaInicialPage {
 
 	@AndroidFindBy(id = "android:id/search_button")
 	MobileElement btnPesquisar;
+	
+	@AndroidFindBy(id = "br.com.pztec.estoque:id/entrada")
+	MobileElement btnEntrada;
+	
+	@AndroidFindBy(id = "br.com.pztec.estoque:id/saida")
+	MobileElement btnSaida;
+	
+	@AndroidFindBy(xpath = "//*[@resource-id= 'br.com.pztec.estoque:id/txt_quantidade']")
+	MobileElement txtQtd;
 
 	public void tratarPopUp() throws Exception {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -55,5 +64,23 @@ public class TelaInicialPage {
 	public void clicaAdicionar() {
 		btnNovo.click();
 	}
+	
+	public void clicaEntrada() {
+		btnEntrada.click();
+	}
+	public void clicaSaida() {
+		btnSaida.click();
+	}
+	
+	public String quantidadeAtual() {
+		return txtQtd.getText().substring(0,1);
+	}
+
+	public void verificaQtde(String quantAnterior, String novaQuant) {
+		System.out.println(quantidadeAtual());
+		assertTrue("Quantidade correta", (Integer.parseInt(quantAnterior) + Integer.parseInt(novaQuant)) == Integer.parseInt(quantidadeAtual()));
+		
+	}
+	
 
 }
