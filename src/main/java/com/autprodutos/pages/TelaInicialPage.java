@@ -36,15 +36,21 @@ public class TelaInicialPage {
 
 	@AndroidFindBy(id = "android:id/search_button")
 	MobileElement btnPesquisar;
-	
+
+	@AndroidFindBy(id = "android:id/search_src_text")
+	MobileElement fldPesquisa;
+
 	@AndroidFindBy(id = "br.com.pztec.estoque:id/entrada")
 	MobileElement btnEntrada;
-	
+
 	@AndroidFindBy(id = "br.com.pztec.estoque:id/saida")
 	MobileElement btnSaida;
-	
+
 	@AndroidFindBy(xpath = "//*[@resource-id= 'br.com.pztec.estoque:id/txt_quantidade']")
 	MobileElement txtQtd;
+
+	@AndroidFindBy(id = "br.com.pztec.estoque:id/txt_descricao")
+	MobileElement txtDescricao;
 
 	public void tratarPopUp() throws Exception {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -57,30 +63,40 @@ public class TelaInicialPage {
 
 	public void validaTelaInicial() {
 		assertTrue("Texto Cadastro de Produtos", txtCadProdutos.isDisplayed());
-		assertTrue("Botao Novo", btnNovo.isDisplayed());
 
 	}
 
 	public void clicaAdicionar() {
 		btnNovo.click();
 	}
-	
+
 	public void clicaEntrada() {
 		btnEntrada.click();
 	}
+
 	public void clicaSaida() {
 		btnSaida.click();
 	}
-	
+
 	public String quantidadeAtual() {
-		return txtQtd.getText().substring(0,1);
+		return txtQtd.getText().substring(0, 1);
 	}
 
 	public void verificaQtde(String quantAnterior, String novaQuant) {
 		System.out.println(quantidadeAtual());
-		assertTrue("Quantidade correta", (Integer.parseInt(quantAnterior) + Integer.parseInt(novaQuant)) == Integer.parseInt(quantidadeAtual()));
-		
+		assertTrue("Quantidade correta",
+				(Integer.parseInt(quantAnterior) + Integer.parseInt(novaQuant)) == Integer.parseInt(quantidadeAtual()));
+
 	}
-	
+
+	public void pesquisa(String produto) {
+		btnPesquisar.click();
+		fldPesquisa.sendKeys(produto);
+	}
+
+	public void verificaProduto(String produto) {
+		System.out.println(txtDescricao.getText());
+		assertTrue("Produto correto encontrado", txtDescricao.getText().equalsIgnoreCase(produto));
+	}
 
 }

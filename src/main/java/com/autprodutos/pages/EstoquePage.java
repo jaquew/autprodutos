@@ -30,23 +30,22 @@ public class EstoquePage {
 
 	@AndroidFindBy(id = "br.com.pztec.estoque:id/btn_salvar")
 	MobileElement btnSalvar;
-	
+
 	@AndroidFindBy(id = "br.com.pztec.estoque:id/txt_qtdatual")
 	MobileElement qtdAtual;
-
 
 	public void clicaSalvar() {
 		btnSalvar.click();
 	}
-	
+
 	public void adicionarQuant(String quant) {
 		fldAdicionarEst.sendKeys(quant);
 		fldMotivo.sendKeys("reposição");
 	}
-	
+
 	public void diminuirQuant(String quant) {
 		fldDiminuirEst.sendKeys(quant);
 		fldMotivo.sendKeys("venda");
 	}
-	
+
 }

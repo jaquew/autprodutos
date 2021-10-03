@@ -2,12 +2,12 @@
 
 Feature: Pesquisa Produtos
 @Pesquisar
-	Scenario: Realizar a pesquisa de um produto
-	Given Que eu esteja na tela principal
-	When Pesquisar o produto pelo nome <nome>
-	Then O produto e encontrado
+	Scenario Outline: Realizar a pesquisa de um produto
+	Given Que eu esteja na tela inicial
+	When Pesquisar o produto <nome>
+	Then O produto <nome> e encontrado
 
 	Examples:
-	|nome	|
-	|fone |
-	|mouse|
+	|nome		|
+	|"Fone" |
+	|"Mouse"|

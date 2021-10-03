@@ -39,36 +39,34 @@ public class Steps {
 	public void tear() {
 		driver.closeApp();
 	}
-	
+
 	@Given("Que eu esteja na tela inicial")
 	public void que_eu_esteja_na_tela_inicial() throws Exception {
 		telaInicial.tratarPopUp();
 		telaInicial.tratarPopUp();
 		telaInicial.validaTelaInicial();
 	}
-	
+
 	@When("Acessar a opcao novo")
-	public void acessar_a_opcao_novo() {	
+	public void acessar_a_opcao_novo() {
 		telaInicial.clicaAdicionar();
 	}
-	
+
 	@When("Preencher com os dados")
 	public void preencher_com_os_dados(DataTable dataTable) {
 		List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
 //		Map<String,String> columns = rows.get(0);
-		for(Map<String, String> dados: rows) {
-			cadastro.preencheDadosProduto(dados.get("Codigo"),dados.get("Descricao"), dados.get("Quantidade"), dados.get("Val.Unit."));
+		for (Map<String, String> dados : rows) {
+			cadastro.preencheDadosProduto(dados.get("Codigo"), dados.get("Descricao"), dados.get("Quantidade"),
+					dados.get("Val.Unit."));
 			cadastro.clicaSalvar();
 			telaInicial.clicaAdicionar();
 		}
-//		driver.pressKeyCode(AndroidKeyCode.BACK);
-		driver.pressKey(new KeyEvent(AndroidKey. BACK));
-		driver.pressKey(new KeyEvent(AndroidKey. BACK));
-
-
+		driver.pressKey(new KeyEvent(AndroidKey.BACK));
+		driver.pressKey(new KeyEvent(AndroidKey.BACK));
 
 	}
-	
+
 	@Then("os produtos sao adicionados")
 	public void os_produtos_sao_adicionados() {
 		cadastro.validaCadastro();
@@ -80,7 +78,7 @@ public class Steps {
 		novaQuant = "1";
 		if (operacao.equals("mais")) {
 			telaInicial.clicaEntrada();
-			estoque.adicionarQuant(novaQuant);			
+			estoque.adicionarQuant(novaQuant);
 		} else if (operacao.equals("menos")) {
 			telaInicial.clicaSaida();
 			estoque.diminuirQuant(novaQuant);
@@ -88,11 +86,22 @@ public class Steps {
 		}
 		estoque.clicaSalvar();
 	}
-	
+
 	@Then("A quantidade e atualizada")
 	public void a_quantidade_e_atualizada() {
-		telaInicial.verificaQtde(quantAnterior,novaQuant);
+		telaInicial.verificaQtde(quantAnterior, novaQuant);
 	}
 
+	@When("Pesquisar o produto {string}")
+	public void pesquisar_o_produto(String produto) {
+		telaInicial.pesquisa(produto);
+		driver.pressKey(new KeyEvent(AndroidKey.ENTER));
+
+	}
+
+	@Then("O produto {string} e encontrado")
+	public void o_produto_e_encontrado(String produto) {
+		telaInicial.verificaProduto(produto);
+	}
 
 }
